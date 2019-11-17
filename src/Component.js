@@ -33,7 +33,7 @@ class App extends React.Component {
 		//if(this.state.add) {
             return(
                 <div>
-                    <AddEmployee/>
+                    <AddEmployee handleAddEmployee={this.handleAddEmployee} />
                     <EmployeeList employees={this.state.employees}/>
                 </div>
             )
@@ -43,9 +43,9 @@ class App extends React.Component {
         //        <button onClick={this.handleAddEmployee}>Add Employee</button>
         //        <EmployeeList employees={this.state.employees}/>
        //     </div>
-		//)
+		
         	
-	//}
+	
 }
 
 export default App

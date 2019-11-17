@@ -151,30 +151,6 @@
       "name": "Rosanna Newman",
       "company": "EXIAND",
       "email": "rosannanewman@exiand.com"
-    },
-    {
-      "id": 23853751.64703917,
-      "isActive": false,
-      "age": "2",
-      "name": "aaa",
-      "company": "aaa",
-      "email": "aaa"
-    },
-    {
-      "id": 13047557.993521754,
-      "isActive": false,
-      "age": "2",
-      "name": "vbbb",
-      "company": "bbb",
-      "email": "bbb"
-    },
-    {
-      "id": 63111936.803730555,
-      "isActive": false,
-      "age": "2",
-      "name": "vvv",
-      "company": "vvv",
-      "email": "bbb"
     }
   ]
 }
