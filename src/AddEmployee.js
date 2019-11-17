@@ -6,6 +6,7 @@ class AddEmployee extends React.Component {
         super(props);
         this.state = {
             Visible: false,
+            Saving: false,
             active:false,
             age:"",
             name:"",
@@ -19,7 +20,7 @@ class AddEmployee extends React.Component {
        
     componentPost() {
 
-        this.setState({ isSaving: true });
+        this.setState({ Saving: true });
         fetch('http://localhost:3000/employees', {
             method: 'POST',
             headers: {
@@ -34,7 +35,7 @@ class AddEmployee extends React.Component {
                 "company": this.state.company,
                 "email": this.state.email
               }),
-        }).then(() => {this.setState({ isSaving: false })
+        }).then(() => {this.setState({ Saving: false })
         })
         this.handleAdd(event);
     }
@@ -47,13 +48,14 @@ class AddEmployee extends React.Component {
         }       
 
     render(){
+
     return(
         <div>
         {this.state.Visible ?  
          (<button onClick={this.handleAdd}>Add Employee</button>  ):
       
-        
-        
+        <div> 
+        {this.state.Saving ? <h1>Saving...</h1>:
             <form onSubmit={this.onSubmit}>
                 <p>ID: <input disabled></input></p>
                 <p>Name: <input ref="name" name="name" onChange={this.handleChange}></input></p>
@@ -65,7 +67,7 @@ class AddEmployee extends React.Component {
                 <button type="button" onClick={(e) => this.componentPost()} >Add</button>
             </form> }      
             <br />
-       
+        </div>}
         </div>
     )
     }
