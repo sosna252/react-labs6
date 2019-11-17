@@ -1,5 +1,6 @@
 import React from 'react'
 import EmployeeList from './EmployeeList'
+import AddEmployee from './AddEmployee'
 
 
 class App extends React.Component {
@@ -8,7 +9,8 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			employees: [],
-			loading: true
+			loading: true,
+			//addemp: false
 		};
 	
 	}
@@ -21,16 +23,29 @@ class App extends React.Component {
             {
                 this.setState({employees: resp, loading:false})
             })
-    }
+	}
+	
+	
 	render() { 
 		if (this.state.loading) {
             return <p>Loading ...</p>;
-        }  
-		return (
-			<EmployeeList employees={this.state.employees}/> 
-		)
+		}  
+		//if(this.state.add) {
+            return(
+                <div>
+                    <AddEmployee/>
+                    <EmployeeList employees={this.state.employees}/>
+                </div>
+            )
+        }
+		//return (
+		//	<div>
+        //        <button onClick={this.handleAddEmployee}>Add Employee</button>
+        //        <EmployeeList employees={this.state.employees}/>
+       //     </div>
+		//)
         	
-	}
+	//}
 }
 
 export default App
