@@ -5,7 +5,7 @@ class AddEmployee extends React.Component {
     {
         super(props);
         this.state = {
-            Visible: false,
+            Visible: true,
             Saving: false,
             active:false,
             age:"",
@@ -36,8 +36,8 @@ class AddEmployee extends React.Component {
                 "email": this.state.email
               }),
         }).then(() => {this.setState({ Saving: false })
-        })
-        this.handleAdd(event);
+        }).then(()=>this.handleAdd(event))
+        //this.handleAdd(event);
     }
 
     handleAdd (event) {
@@ -55,8 +55,8 @@ class AddEmployee extends React.Component {
          (<button onClick={this.handleAdd}>Add Employee</button>  ):
       
         <div> 
-        {this.state.Saving ? <h1>Saving...</h1>:
-            <form onSubmit={this.onSubmit}>
+        {this.state.Saving ? <p>Saving...</p>:
+            <form>
                 <p>ID: <input disabled></input></p>
                 <p>Name: <input ref="name" name="name" onChange={this.handleChange}></input></p>
                 <p>Age: <input type="number" ref="age"name="age" onChange={this.handleChange}></input></p>
@@ -66,7 +66,7 @@ class AddEmployee extends React.Component {
                 <button type="button" onClick={(e) => this.handleAdd(e)} >Cancel</button>
                 <button type="button" onClick={(e) => this.componentPost()} >Add</button>
             </form> }      
-            <br />
+            <br/>
         </div>}
         </div>
     )

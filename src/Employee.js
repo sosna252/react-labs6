@@ -6,7 +6,8 @@ class ComponentOne extends React.Component {
     constructor(props) {
 		super(props);
 		this.state = {
-			deleting: false
+            deleting: false,
+            deleted:false
         };
         this.handleDelete=this.handleDelete.bind(this);
     }
@@ -17,26 +18,25 @@ class ComponentOne extends React.Component {
         method: 'DELETE',
         headers: {'content-type': 'application/json'},
         body: JSON.stringify({id:this.props.data._id})
-        }).then(Component.render())
-        this.setState({deleting: false})
+        }).then(this.setState({deleting: false, deleted: true}))
     }
     
     render() {
 
 		return (
             <div>
-            {this.state.deleting ? <p>Deleting...</p> :
-            <div>
-                <p>Name : {this.props.data.name}</p>
-                <p>company : {this.props.data.company}</p>
-                <p>age : {this.props.data.age}</p>
-                <p>email : {this.props.data.email}</p>
-                <p>isActive : {this.props.data.isActive.toString()}</p>    
-                <button onClick={this.handleDelete}>Delete</button>
-                <hr />       
-                
-             </div> 
-            }
+                {this.state.deleted? null :
+                    this.state.deleting? <p>Deleting...</p> :
+                        <div>
+                        <p>Name : {this.props.data.name}</p>
+                        <p>company : {this.props.data.company}</p>
+                        <p>age : {this.props.data.age}</p>
+                        <p>email : {this.props.data.email}</p>
+                        <p>isActive : {this.props.data.isActive.toString()}</p>    
+                        <button onClick={this.handleDelete}>Delete</button>
+                        <hr />                  
+                     </div> 
+                }
            </div>
          
         )
