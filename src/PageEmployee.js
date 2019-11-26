@@ -65,8 +65,8 @@ class AddEmployee extends React.Component {
                 <p>Company: <input ref="comapny" name="company" onChange={this.handleChange}></input></p>
                 <p >email: <input type="email" ref="email" name="email" onChange={this.handleChange}></input></p>
                 <p>Active: <input type="checkbox" ref="active" name="isActive" onChange={this.handleChange}></input></p>                
-                <button type="button" onClick={(e) => this.handleAdd(e)}>Cancel</button>
-                <button type="button" onClick={(e) => this.componentPost()} >Add</button>
+                <Link to="/"><button type="button" onClick={(e) => this.handleAdd(e)}>Cancel</button></Link>
+                <Link to="/"><button type="button" onClick={(e) => this.componentPost()} >Add</button></Link>
             </form> }      
             <br/>
         </div>

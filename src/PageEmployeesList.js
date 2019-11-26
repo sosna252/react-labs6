@@ -18,8 +18,10 @@ const App = (props) => {
  
     return (
         <div>
-           
         {employeelist}
+        <Link to="/new">
+            <button>Add new Employee</button>
+            </Link>
         </div>
     )
 }
