@@ -1,11 +1,17 @@
 import React from 'react'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+}from "react-router-dom"
+
 class AddEmployee extends React.Component {
 
     constructor(props)
     {
         super(props);
         this.state = {
-            Visible: true,
             Saving: false,
             active:false,
             age:"",
@@ -16,10 +22,10 @@ class AddEmployee extends React.Component {
 
           this.handleAdd=this.handleAdd.bind(this);
           this.handleChange=this.handleChange.bind(this);
+          this.componentPost=this.componentPost.bind(this);
     }
        
     componentPost() {
-
         this.setState({ Saving: true });
         fetch('http://localhost:3000/employees', {
             method: 'POST',
@@ -35,9 +41,8 @@ class AddEmployee extends React.Component {
                 "company": this.state.company,
                 "email": this.state.email
               }),
-        }).then(() => {this.setState({ Saving: false })
-        }).then(()=>this.handleAdd(event))
-        //this.handleAdd(event);
+        })//.then(() => {this.setState({ Saving: false })
+        //}).then(()=>this.handleAdd(event))
     }
 
     handleAdd (event) {
@@ -51,9 +56,6 @@ class AddEmployee extends React.Component {
 
     return(
         <div>
-        {this.state.Visible ?  
-         (<button onClick={this.handleAdd}>Add Employee</button>  ):
-      
         <div> 
         {this.state.Saving ? <p>Saving...</p>:
             <form>
@@ -63,11 +65,11 @@ class AddEmployee extends React.Component {
                 <p>Company: <input ref="comapny" name="company" onChange={this.handleChange}></input></p>
                 <p >email: <input type="email" ref="email" name="email" onChange={this.handleChange}></input></p>
                 <p>Active: <input type="checkbox" ref="active" name="isActive" onChange={this.handleChange}></input></p>                
-                <button type="button" onClick={(e) => this.handleAdd(e)} >Cancel</button>
+                <button type="button" onClick={(e) => this.handleAdd(e)}>Cancel</button>
                 <button type="button" onClick={(e) => this.componentPost()} >Add</button>
             </form> }      
             <br/>
-        </div>}
+        </div>
         </div>
     )
     }

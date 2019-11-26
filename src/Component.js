@@ -33,14 +33,18 @@ class App extends React.Component {
 	render() { 
 		if (this.state.loading) {
             return <p>Loading ...</p>;
-	  	}  
+		}  
             return(
-            <div>
-              <PageEmployee handleAddEmployee={this.handleAddEmployee}/>
+            <Router>
+                <Switch>
+                    <Route exact path="/">
                       <PageEmployeesList employees={this.state.employees}/>
-                   
-                      
-          </div>
+                    </Route>
+                    <Route path="/new">
+                      <PageEmployee handleAddEmployee={this.handleAddEmployee} />
+                    </Route>
+              </Switch>
+            </Router>
             )
 
              //   <div>
