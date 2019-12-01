@@ -12,13 +12,16 @@ const App = (props) => {
    
    
     const employeelist = props.employees.map(Emp => {
+        console.log(Emp._id)
         return <Employee key={Emp._id} data = {Emp}/>
     }) 
-     
+
  
     return (
         <div>
+        
         {employeelist}
+        
         <Link to="/new">
             <button>Add new Employee</button>
             </Link>

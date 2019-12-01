@@ -6,6 +6,8 @@ import {
     Link
 }from "react-router-dom"
 
+import { withRouter } from "react-router-dom";
+
 class AddEmployee extends React.Component {
 
     constructor(props)
@@ -41,11 +43,11 @@ class AddEmployee extends React.Component {
                 "company": this.state.company,
                 "email": this.state.email
               }),
-        })//.then(() => {this.setState({ Saving: false })
-        //}).then(()=>this.handleAdd(event))
+        //}).then(() => {this.setState({ Saving: false })
+        }).then(()=> this.props.history.push("/"))
     }
 
-    handleAdd (event) {
+    handleAdd (event) { 
         this.setState({Visible: !this.state.Visible});}
 
     handleChange(event){
@@ -65,8 +67,8 @@ class AddEmployee extends React.Component {
                 <p>Company: <input ref="comapny" name="company" onChange={this.handleChange}></input></p>
                 <p >email: <input type="email" ref="email" name="email" onChange={this.handleChange}></input></p>
                 <p>Active: <input type="checkbox" ref="active" name="isActive" onChange={this.handleChange}></input></p>                
-                <Link to="/"><button type="button" onClick={(e) => this.handleAdd(e)}>Cancel</button></Link>
-                <Link to="/"><button type="button" onClick={(e) => this.componentPost()} >Add</button></Link>
+                <button type="button" onClick={(e) => this.props.history.push("/")}>Cancel</button>
+                <button type="button" onClick={(e) => this.componentPost()} >Add</button>
             </form> }      
             <br/>
         </div>
@@ -75,4 +77,4 @@ class AddEmployee extends React.Component {
     }
 }
 
-export default AddEmployee 
+export default withRouter(AddEmployee) 

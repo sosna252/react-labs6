@@ -12,12 +12,11 @@ class ComponentOne extends React.Component {
         this.handleDelete=this.handleDelete.bind(this);
     }
    
-    handleDelete (e) { 
+    handleDelete (id) { 
         this.setState({deleting: true})
-        fetch('http://localhost:3000/employees/'+ this.props.data.id.toString(), {
-        method: 'DELETE',
+        fetch(`http://localhost:3000/employees/${id}`, {
+        method: 'Delete',
         headers: {'content-type': 'application/json'},
-        body: JSON.stringify({id:this.props.data._id})
         }).then(this.setState({deleting: false, deleted: true}))
     }
     
@@ -28,12 +27,13 @@ class ComponentOne extends React.Component {
                 {this.state.deleted? null :
                     this.state.deleting? <p>Deleting...</p> :
                         <div>
+                        
                         <p>Name : {this.props.data.name}</p>
                         <p>company : {this.props.data.company}</p>
                         <p>age : {this.props.data.age}</p>
                         <p>email : {this.props.data.email}</p>
                         <p>isActive : {this.props.data.isActive.toString()}</p>    
-                        <button onClick={this.handleDelete}>Delete</button>
+                        <button onClick={() => this.handleDelete(this.props.data.id === undefined ? this.props.data._id : this.props.data.id)}>Delete</button>
                         <hr />                  
                      </div> 
                 }
