@@ -3,7 +3,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
 }from "react-router-dom"
 
 import { withRouter } from "react-router-dom";
@@ -27,8 +27,9 @@ class AddEmployee extends React.Component {
           this.componentPost=this.componentPost.bind(this);
     }
        
-    componentPost() {
-        this.setState({ Saving: true });
+    componentPost(e) {
+        //this.setState({ Saving: true });
+        e.preventDefault();
         fetch('http://localhost:3000/employees', {
             method: 'POST',
             headers: {
@@ -68,7 +69,7 @@ class AddEmployee extends React.Component {
                 <p >email: <input type="email" ref="email" name="email" onChange={this.handleChange}></input></p>
                 <p>Active: <input type="checkbox" ref="active" name="isActive" onChange={this.handleChange}></input></p>                
                 <button type="button" onClick={(e) => this.props.history.push("/")}>Cancel</button>
-                <button type="button" onClick={(e) => this.componentPost()} >Add</button>
+                <button type="button" onClick={(e) => this.componentPost(e)} >Add</button>
             </form> }      
             <br/>
         </div>

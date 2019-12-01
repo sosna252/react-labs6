@@ -12,7 +12,6 @@ const App = (props) => {
    
    
     const employeelist = props.employees.map(Emp => {
-        console.log(Emp._id)
         return <Employee key={Emp._id} data = {Emp}/>
     }) 
 
