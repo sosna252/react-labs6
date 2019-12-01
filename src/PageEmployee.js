@@ -28,24 +28,21 @@ class AddEmployee extends React.Component {
     }
        
     componentPost(e) {
-        //this.setState({ Saving: true });
         e.preventDefault();
         fetch('http://localhost:3000/employees', {
             method: 'POST',
             headers: {
-                Accept: 'application/json',
                 'Content-Type': 'application/json',
             },
 			body: JSON.stringify( {
-                "id": Math.random()*99999999*Math.random().toString(),
                 "isActive": this.state.active,
                 "age": this.state.age,
                 "name": this.state.name,
                 "company": this.state.company,
                 "email": this.state.email
-              }),
-        //}).then(() => {this.setState({ Saving: false })
-        }).then(()=> this.props.history.push("/"))
+              })
+            }).then(()=>{this.props.history.push('/');
+        });   
     }
 
     handleAdd (event) { 
